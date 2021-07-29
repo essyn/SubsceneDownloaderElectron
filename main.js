@@ -31,10 +31,12 @@ app.on("activate", () => {
     }
 });
 ipcMain.on("deneme", (err, data) => {
-    let filepath = app.getPath("downloads");
+    let filepath = path.join(app.getPath("downloads"), "subtitles");
     data.items.forEach(item => {
         DownloadFile(item);
+
     })
+    shell.openPath(filepath)
 
 
 
@@ -67,8 +69,7 @@ function SaveFile(url, folderName) {
              writer.on('finish',()=>{
                 // fs.createReadStream(path.join(filepath,folderName,filename))
                 // .pipe(unzipper.Extract({path:path.join(filepath,folderName)}))
-               
-                shell.openPath(filepath)
+
 
                 mainWindow.webContents.send("complete",{name:filename})
              })
