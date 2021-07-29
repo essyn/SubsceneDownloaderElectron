@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Notification } = require("electron");
+const { app, BrowserWindow, ipcMain,shell, Notification } = require("electron");
 const path = require("path");
 const os = require('os');
 const fs = require('fs');
@@ -65,10 +65,10 @@ function SaveFile(url, folderName) {
              response.data.pipe(writer);
              
              writer.on('finish',()=>{
-                fs.createReadStream(path.join(filepath,folderName,filename))
-                .pipe(unzipper.Extract({path:path.join(filepath,folderName)}))
+                // fs.createReadStream(path.join(filepath,folderName,filename))
+                // .pipe(unzipper.Extract({path:path.join(filepath,folderName)}))
                
-
+                shell.openPath(filepath)
 
                 mainWindow.webContents.send("complete",{name:filename})
              })
@@ -87,7 +87,7 @@ function SaveFile(url, folderName) {
 function DownloadFile(fullUrl) {
     axios.get(fullUrl).then(data => {
         const $ = cheerio.load(data.data);
-        let folderName = $("span[itemprop=name]").text().trim().replace(/\s+/g, "_").replace("-", "_");
+        let folderName = $("span[itemprop=name]").text().trim().replace(/\s+/g, "_").replace("-", "_").replace(/[^a-zA-Z0-9]/g,'_');
         let btnEl = $("a[id=downloadButton]");
         if (btnEl) {
             let downloadurl = btnEl.attr('href');

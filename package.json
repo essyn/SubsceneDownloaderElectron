@@ -1,7 +1,7 @@
 {
-  "name": "ptn",
+  "name": "SubsceneDownloader",
   "version": "1.0.0",
-  "description": "",
+  "description": "bacth download for subscene",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
     "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "",
+  "author": "erhan sayan",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.59",
@@ -18,13 +18,14 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.59",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
     "@electron-forge/maker-zip": "^6.0.0-beta.59",
-    "axios": "^0.21.1",
     "electron": "^13.1.7"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "electron-squirrel-startup": "^1.0.0",
-    "unzipper": "^0.10.11"
+    "unzipper": "^0.10.11",
+    "axios": "^0.21.1"
+
   },
   "config": {
     "forge": {
@@ -33,7 +34,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "ptn"
+            "name": "SubsceneDownloader"
           }
         },
         {
